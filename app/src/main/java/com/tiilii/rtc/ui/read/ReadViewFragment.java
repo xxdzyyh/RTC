@@ -123,6 +123,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         View root = inflater.inflate(R.layout.fragment_read_view, container, false);
         ButterKnife.bind(this, root);
 
+
         requestPermission(0);
         setDefaultSavePath();
         setListeners();
