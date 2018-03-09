@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tiilii.rtc">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".base.RtcApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="7622541" />
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="t6sRUaX8KTZjbWvgX7UGGg4e" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="WDFn4P5QFFfdua3FXq1GUu4NLXHGy9C2" />
+
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.practise.teacher.list.HomeworkListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.practise.teacher.statistic.HomeworkStatisticActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.practise.teacher.detail.HomeworkDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.learn.content.write.WriteActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.learn.content.shot.ShotActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

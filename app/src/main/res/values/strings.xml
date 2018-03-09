@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">颂习练</string>
+    <string name="toast_exit_app">再按一次退出程序</string>
+
+    <string name="text_home">首页</string>
+    <string name="text_read_book">诵经典</string>
+    <string name="text_learn_word">习汉字</string>
+    <string name="text_practise_math">练运算</string>
+    <string name="text_mine">我的</string>
+
+    <string name="previous_question">上一题</string>
+    <string name="next_question">下一题</string>
+    <string name="homework_time_has_expired">作业时间已过</string>
+</resources>

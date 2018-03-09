@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--白色-->
+    <color name="white">#FFFFFF</color>
+    <!--红色-->
+    <color name="red_1">#D6172F</color>
+    <!--蓝色-->
+    <color name="blue_1">#4D94FC</color>
+    <!--黑色-->
+    <color name="black_1">#010101</color>
+    <color name="black_2">#000000</color>
+    <!--灰色-->
+    <color name="gray_1">#7C7C7C</color>
+    <color name="gray_2">#E5E5E5</color>
+</resources>
