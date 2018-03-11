@@ -196,7 +196,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
 
         // 停止录制视频
         releaseRecorder();
-        cameraTextureView.setVisibility(View.GONE);
+//        cameraTextureView.setVisibility(View.GONE);
 
         // 结束语音识别
         cancel();
