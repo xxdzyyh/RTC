@@ -469,7 +469,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
                 height = size.height;
             }
         }
-        parameters.setPreviewSize(width, height);
+        parameters.setPreviewSize(640, 640);
         System.out.println("width = " + width);
         System.out.println("height = " + height);
 
