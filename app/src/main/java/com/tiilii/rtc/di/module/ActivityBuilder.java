@@ -8,6 +8,8 @@ import com.tiilii.rtc.ui.learn.content.shot.ShotActivity;
 import com.tiilii.rtc.ui.learn.content.shot.ShotModule;
 import com.tiilii.rtc.ui.learn.content.write.WriteActivity;
 import com.tiilii.rtc.ui.learn.content.write.WriteModule;
+import com.tiilii.rtc.ui.practise.student.StudentActivity;
+import com.tiilii.rtc.ui.practise.student.StudentModule;
 import com.tiilii.rtc.ui.practise.teacher.detail.HomeworkDetailActivity;
 import com.tiilii.rtc.ui.practise.teacher.detail.HomeworkDetailModule;
 import com.tiilii.rtc.ui.practise.teacher.list.HomeworkListActivity;
@@ -72,4 +74,11 @@ public abstract class ActivityBuilder {
     @ActivityScoped
     @ContributesAndroidInjector(modules = ShotModule.class)
     abstract ShotActivity bindShotActivity();
+
+    /**
+     * 自主练习
+     */
+    @ActivityScoped
+    @ContributesAndroidInjector(modules = StudentModule.class)
+    abstract StudentActivity bindStudentActivity();
 }

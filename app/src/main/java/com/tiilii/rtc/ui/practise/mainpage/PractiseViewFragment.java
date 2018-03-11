@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
+import com.tiilii.rtc.ui.practise.student.StudentActivity;
 import com.tiilii.rtc.ui.practise.teacher.list.HomeworkListActivity;
 
 import javax.inject.Inject;
@@ -56,9 +57,11 @@ public class PractiseViewFragment extends BaseFragment implements PractiseContra
     @OnClick(R.id.tv_student)
     void showShot() {
 
+        Intent intent = new Intent(mContext, StudentActivity.class);
+        startActivity(intent);
     }
 
-    @OnClick(R.id.tv_write)
+    @OnClick(R.id.tv_teacher)
     void showWrite() {
 
         Intent intent = new Intent(mContext, HomeworkListActivity.class);

@@ -60,6 +60,10 @@
         <activity
             android:name=".ui.learn.content.shot.ShotActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.practise.student.StudentActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
