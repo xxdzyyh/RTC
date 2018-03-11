@@ -58,7 +58,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
 
     /**
-     * 点击颂经典
+     * 点击诵经典
      */
     @OnClick(R.id.tv_read)
     void showRead() {

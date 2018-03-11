@@ -2,13 +2,16 @@ package com.tiilii.rtc.ui.learn.content.shot;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseActivity;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
 /**
@@ -18,6 +21,11 @@ import dagger.android.AndroidInjection;
 
 public class ShotActivity extends BaseActivity {
 
+    /**
+     * 标题
+     */
+    @BindView(R.id.tv_title)
+    TextView titleTextView;
 
     @Inject
     ShotFragment shotFragment;
@@ -36,5 +44,13 @@ public class ShotActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_shot_content, shotFragment)
                 .commit();
+
+        titleTextView.setText("拍摄");
+    }
+
+    @OnClick(R.id.iv_back)
+    void backActivity() {
+
+        finish();
     }
 }
