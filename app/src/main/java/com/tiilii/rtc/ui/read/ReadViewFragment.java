@@ -412,9 +412,18 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
      * 初始化摄像头对象
      */
     private void initCamera() {
-
+        int cameraCount = 0;
+        Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
+        cameraCount = Camera.getNumberOfCameras();
         try {
-            camera = Camera.open();
+//            camera = Camera.open();
+            for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
+                Camera.getCameraInfo(camIdx, cameraInfo);
+                if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+                    camera = Camera.open(camIdx);
+                }
+            }
+
         } catch (Exception e) {
 
             Toast.makeText(mContext, "相机无法使用", Toast.LENGTH_SHORT).show();
@@ -511,10 +520,10 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
 
         camera.unlock();
         recorder.setCamera(camera);
-        recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
+//        recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
         recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
         recorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+//        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
 
         String fileName = "video_" + System.currentTimeMillis() + ".mp4";
