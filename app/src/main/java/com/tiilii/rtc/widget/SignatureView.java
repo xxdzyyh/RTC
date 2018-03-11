@@ -163,12 +163,13 @@ public class SignatureView extends View {
     }
 
     public void saveBitmap() {
-        Bitmap bitmap = Bitmap.createBitmap(768/*width*/, 1024/*height*/, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(1080/*width*/, 1920/*height*/, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
+        canvas.drawRGB(255, 255, 255);
         canvas.drawPath(path, paint);
 
         String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Files/";
-        String fileName = "test.png";
+        String fileName = "img_" + System.currentTimeMillis() + ".png";
 
         File f = new File(filePath + fileName);
 
