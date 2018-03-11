@@ -4,6 +4,8 @@ package com.tiilii.rtc.ui.home;
 import com.tiilii.rtc.di.FragmentScoped;
 import com.tiilii.rtc.ui.learn.mainpage.LearnFragment;
 import com.tiilii.rtc.ui.learn.mainpage.LearnModule;
+import com.tiilii.rtc.ui.practise.mainpage.PractiseFragment;
+import com.tiilii.rtc.ui.practise.mainpage.PractiseModule;
 import com.tiilii.rtc.ui.read.ReadFragment;
 import com.tiilii.rtc.ui.read.ReadModule;
 
@@ -32,5 +34,12 @@ public abstract class HomeFragmentBuilder {
      */
     @FragmentScoped
     @ContributesAndroidInjector(modules = LearnModule.class)
-    abstract LearnFragment learnFragment();
+    abstract LearnFragment bindLearnFragment();
+
+    /**
+     * 练运算
+     */
+    @FragmentScoped
+    @ContributesAndroidInjector(modules = PractiseModule.class)
+    abstract PractiseFragment bindPractiseFragment();
 }

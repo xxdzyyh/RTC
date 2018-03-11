@@ -1,6 +1,5 @@
 package com.tiilii.rtc.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
 import com.tiilii.rtc.ui.learn.mainpage.LearnFragment;
-import com.tiilii.rtc.ui.practise.teacher.list.HomeworkListActivity;
+import com.tiilii.rtc.ui.practise.mainpage.PractiseFragment;
 import com.tiilii.rtc.ui.read.ReadFragment;
 
 import javax.inject.Inject;
@@ -30,6 +29,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     ReadFragment readFragment;
     LearnFragment learnFragment;
+    PractiseFragment practiseFragment;
 
     @Inject
     HomeContract.Presenter mPresenter;
@@ -65,6 +65,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
 
         hideFragment(learnFragment, "learn");
+        hideFragment(practiseFragment, "practise");
         showFragment(readFragment, "read");
     }
 
@@ -82,14 +83,25 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
         }
 
         hideFragment(readFragment, "read");
+        hideFragment(practiseFragment, "practise");
         showFragment(learnFragment, "learn");
     }
 
     @OnClick(R.id.tv_practise)
     void clickPractise() {
 
-        Intent intent = new Intent(mContext, HomeworkListActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(mContext, HomeworkListActivity.class);
+//        startActivity(intent);
+
+        if (practiseFragment == null) {
+            practiseFragment = PractiseFragment.newInstance();
+
+            addFragment(practiseFragment, "practise");
+        }
+
+        hideFragment(readFragment, "read");
+        hideFragment(learnFragment, "learn");
+        showFragment(practiseFragment, "practise");
     }
 
     /**
