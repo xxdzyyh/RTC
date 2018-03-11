@@ -90,9 +90,6 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     @OnClick(R.id.tv_practise)
     void clickPractise() {
 
-//        Intent intent = new Intent(mContext, HomeworkListActivity.class);
-//        startActivity(intent);
-
         if (practiseFragment == null) {
             practiseFragment = PractiseFragment.newInstance();
 

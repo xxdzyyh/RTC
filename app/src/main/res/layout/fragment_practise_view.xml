@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <com.bovink.gradient.GradientTextView
-        android:id="@+id/tv_write"
+        android:id="@+id/tv_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -22,7 +22,7 @@
         app:solid_color="@color/red_1" />
 
     <com.bovink.gradient.GradientTextView
-        android:id="@+id/tv_shot"
+        android:id="@+id/tv_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
