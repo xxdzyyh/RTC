@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -104,11 +105,6 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
      */
     @BindView(R.id.tv_temporary)
     TextView temporaryTextView;
-    /**
-     * 最终识别
-     */
-    @BindView(R.id.tv_final)
-    TextView finalTextView;
 
     @Inject
     ReadContract.Presenter mPresenter;
@@ -167,14 +163,6 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     @OnClick(R.id.btn_start)
     void startIdentify() {
 
-//        Map<String, Object> map = new HashMap<>();
-//        map.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 0);// 开启长语音
-//
-//        PidBuilder pidBuilder = new PidBuilder();
-//        map = pidBuilder.addPidInfo(map);
-//
-//        start(map);
-
         if (permissionDenied) {
             Toast.makeText(mContext, "没有权限，无法使用功能", Toast.LENGTH_SHORT).show();
             return;
@@ -186,13 +174,22 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
 
         // 录视频
         startRecord();
+
+        // 识别语音
+        Map<String, Object> map = new HashMap<>();
+        map.put(SpeechConstant.VAD_ENDPOINT_TIMEOUT, 0);// 开启长语音
+
+        PidBuilder pidBuilder = new PidBuilder();
+        map = pidBuilder.addPidInfo(map);
+
+        start(map);
+
     }
 
     @OnClick(R.id.btn_cancel)
     void cancelIdentify() {
 
-//        cancel();
-
+        // 结束录制视频
         if (permissionDenied || camera == null) {
             return;
         }
@@ -200,6 +197,9 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         // 停止录制视频
         releaseRecorder();
         cameraTextureView.setVisibility(View.GONE);
+
+        // 结束语音识别
+        cancel();
 
     }
 
@@ -355,7 +355,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         @Override
         public void onAsrFinalResult(String[] results, RecogResult recogResult) {
 
-            finalTextView.setText(results[0]);
+            temporaryTextView.setText(results[0]);
         }
 
         @Override

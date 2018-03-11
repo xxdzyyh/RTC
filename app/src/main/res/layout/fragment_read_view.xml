@@ -19,28 +19,26 @@
         android:id="@+id/tv_temporary"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:gravity="center" />
 
-    <TextView
-        android:id="@+id/tv_final"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <Button
             android:id="@+id/btn_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="start" />
+            android:text="开始识别" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="cancel" />
+            android:layout_marginLeft="40dp"
+            android:text="结束识别" />
     </LinearLayout>
 </LinearLayout>
