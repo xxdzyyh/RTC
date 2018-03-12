@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
@@ -226,8 +226,8 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     private void requestPermission(int index) {
 
         for (int i = index; i < requestPermissions.length; i++) {
-            if (ActivityCompat.checkSelfPermission(mContext, requestPermissions[i]) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{requestPermissions[i]}, i);
+            if (ContextCompat.checkSelfPermission(mContext, requestPermissions[i]) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{requestPermissions[i]}, i);
                 break;
             }
             if (i == requestPermissions.length - 1) {// 获得所有权限
