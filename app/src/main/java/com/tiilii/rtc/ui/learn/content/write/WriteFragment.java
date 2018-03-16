@@ -1,6 +1,7 @@
 package com.tiilii.rtc.ui.learn.content.write;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
+import com.tiilii.rtc.recognizetext.RecognizeService;
 import com.tiilii.rtc.widget.SignatureView;
 
 import javax.inject.Inject;
@@ -51,5 +53,19 @@ public class WriteFragment extends BaseFragment implements WriteContract.View {
 
         writeSignatureView.setTouchable(false);
         writeSignatureView.saveBitmap();
+    }
+
+    @OnClick(R.id.btn_recognize)
+    void recognize() {
+
+        String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Files/";
+        String fileName = "img_" + "test" + ".png";
+        RecognizeService.recAccurateBasic(filePath + fileName,
+                new RecognizeService.ServiceListener() {
+                    @Override
+                    public void onResult(String result) {
+                        System.out.println("result = " + result);
+                    }
+                });
     }
 }

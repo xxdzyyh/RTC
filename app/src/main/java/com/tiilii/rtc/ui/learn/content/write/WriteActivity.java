@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.TextView;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseActivity;
 
@@ -46,6 +50,23 @@ public class WriteActivity extends BaseActivity {
                 .commit();
 
         titleTextView.setText("写字");
+
+
+        initAccessTokenWithAkSk();
+    }
+
+    private void initAccessTokenWithAkSk() {
+        OCR.getInstance().initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+            @Override
+            public void onResult(AccessToken result) {
+                String token = result.getAccessToken();
+            }
+
+            @Override
+            public void onError(OCRError error) {
+                error.printStackTrace();
+            }
+        }, getApplicationContext(), "NGo827dVORO7D7y3rQY1XO4G", "OAiAafDFNVmllYYsDCzWgOCe7ICdlMYp");
     }
 
     @OnClick(R.id.iv_back)
