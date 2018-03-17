@@ -31,7 +31,7 @@ import java.util.Set;
 public class SignatureView extends View {
 
 
-    private static final float MAX_STROKE_WIDTH = 80f;
+    private static final float MAX_STROKE_WIDTH = 30f;
 
     private boolean mTouchable = true;
     private Context mContext;
@@ -222,13 +222,13 @@ public class SignatureView extends View {
         }
 
         String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Files/";
-        String fileName = "img_" + "test" + ".png";
+        String fileName = "img_" + "test" + ".jpeg";
 
         File f = new File(filePath + fileName);
 
         //Convert bitmap to byte array
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 0 /*ignored for PNG*/, bos);
         byte[] bitmapdata = bos.toByteArray();
 
         //write the bytes in file

@@ -59,7 +59,7 @@ public class WriteFragment extends BaseFragment implements WriteContract.View {
     void recognize() {
 
         String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/Files/";
-        String fileName = "img_" + "test" + ".png";
+        String fileName = "img_" + "test" + ".jpeg";
         RecognizeService.recAccurateBasic(filePath + fileName,
                 new RecognizeService.ServiceListener() {
                     @Override
