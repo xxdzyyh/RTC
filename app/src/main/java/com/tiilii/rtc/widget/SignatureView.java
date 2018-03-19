@@ -31,7 +31,7 @@ import java.util.Set;
 public class SignatureView extends View {
 
 
-    private static final float MAX_STROKE_WIDTH = 30f;
+    private static final float MAX_STROKE_WIDTH = 80f;
 
     private boolean mTouchable = true;
     private Context mContext;
@@ -43,6 +43,8 @@ public class SignatureView extends View {
 
     private int mWidth;
     private int mHeight;
+
+    private OnSavePictureListener onSavePictureListener = null;
 
     public SignatureView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -249,11 +251,31 @@ public class SignatureView extends View {
             fos.write(bitmapdata);
             fos.flush();
             fos.close();
+            if (onSavePictureListener != null) {
+                onSavePictureListener.onSuccess();
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            if (onSavePictureListener != null) {
+                onSavePictureListener.onFailure();
+            }
         } catch (IOException e) {
             e.printStackTrace();
+            if (onSavePictureListener != null) {
+                onSavePictureListener.onFailure();
+            }
         }
+    }
+
+
+    public void setOnSavePictureListener(OnSavePictureListener onSavePictureListener) {
+        this.onSavePictureListener = onSavePictureListener;
+    }
+
+    public interface OnSavePictureListener {
+        void onSuccess();
+
+        void onFailure();
     }
 
     public class Brush {
