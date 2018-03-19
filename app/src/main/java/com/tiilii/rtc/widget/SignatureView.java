@@ -41,6 +41,9 @@ public class SignatureView extends View {
     private float mCurrentKey = 0;
     private Brush mCurrentBrush = null;
 
+    private int mWidth;
+    private int mHeight;
+
     public SignatureView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -66,6 +69,14 @@ public class SignatureView extends View {
             canvas.drawPath(brush.getPath(), brush.getPaint());
 
         }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mWidth = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+        mHeight = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
+
     }
 
     private void initBrush(float pressure) {
@@ -209,7 +220,7 @@ public class SignatureView extends View {
     }
 
     public void saveBitmap() {
-        Bitmap bitmap = Bitmap.createBitmap(1080/*width*/, 1920/*height*/, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(mWidth/*width*/, mHeight/*height*/, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawRGB(255, 255, 255);
 
