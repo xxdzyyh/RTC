@@ -25,6 +25,7 @@ public class StudentFragment extends BaseFragment implements StudentContract.Vie
 
     @Inject
     public StudentFragment() {
+        mPresenter = new StudentPresenter();
     }
 
     @Nullable

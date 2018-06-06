@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
+import com.tiilii.rtc.ui.home.HomePresenter;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,11 @@ public class LearnFragment extends BaseFragment {
 
     public static LearnFragment newInstance() {
         return new LearnFragment();
+    }
+
+    @Inject
+    public LearnFragment() {
+        learnPresenter = new LearnPresenter();
     }
 
     @Nullable

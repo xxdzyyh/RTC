@@ -48,6 +48,10 @@ public class PractiseFragment extends BaseFragment {
         return new PractiseFragment();
     }
 
+    public PractiseFragment() {
+        practisePresenter = new PractisePresenter();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

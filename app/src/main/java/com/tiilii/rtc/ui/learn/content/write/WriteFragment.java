@@ -43,6 +43,7 @@ public class WriteFragment extends BaseFragment implements WriteContract.View, S
 
     @Inject
     public WriteFragment() {
+        mPresenter = new WritePresenter();
     }
 
     @Nullable

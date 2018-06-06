@@ -83,6 +83,7 @@ public class ShotFragment extends BaseFragment implements ShotContract.View {
 
     @Inject
     public ShotFragment() {
+        mPresenter = new ShotPresenter();
     }
 
     @Nullable

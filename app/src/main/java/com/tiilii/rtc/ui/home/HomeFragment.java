@@ -36,6 +36,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
     @Inject
     public HomeFragment() {
+        mPresenter = new HomePresenter();
     }
 
     @Nullable
