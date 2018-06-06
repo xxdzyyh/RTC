@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,8 @@ public class WriteFragment extends BaseFragment implements WriteContract.View, S
                     @Override
                     public void onResult(String result) {
                         mKProgressHUD.dismiss();
+
+                        Log.e("wer",result);
 
                         TextRecogResult recogResult = gson.fromJson(result, TextRecogResult.class);
                         System.out.println("result = " + result);

@@ -111,6 +111,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
 
     @Inject
     public ReadViewFragment() {
+        mPresenter = new ReadPresenter();
     }
 
     @Nullable
