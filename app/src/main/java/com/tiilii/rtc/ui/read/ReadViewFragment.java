@@ -416,8 +416,8 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         int cameraCount = 0;
         Camera.CameraInfo cameraInfo = new Camera.CameraInfo();
         cameraCount = Camera.getNumberOfCameras();
+
         try {
-//            camera = Camera.open();
             for (int camIdx = 0; camIdx < cameraCount; camIdx++) {
                 Camera.getCameraInfo(camIdx, cameraInfo);
                 if (cameraInfo.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
@@ -430,6 +430,12 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
             Toast.makeText(mContext, "相机无法使用", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        if (camera == null) {
+            Toast.makeText(mContext, "相机无法使用", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         camera.setDisplayOrientation(90);// 旋转90度适应竖屏
 
         try {
@@ -444,17 +450,17 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
 
         chooseOptimalSize(cameraTextureView.getWidth(), cameraTextureView.getHeight());// 获取合适的尺寸
 
-        // 自动聚焦
-        List<String> focusList = parameters.getSupportedFocusModes();
-        if (focusList.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-        } else if (focusList.contains(Camera.Parameters.FOCUS_MODE_FIXED)) {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_FIXED);
-        } else if (focusList.contains(Camera.Parameters.FOCUS_MODE_INFINITY)) {
-            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
-        } else {
-            parameters.setFocusMode(focusList.get(0));
-        }
+//        // 自动聚焦
+//        List<String> focusList = parameters.getSupportedFocusModes();
+//        if (focusList.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
+//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+//        } else if (focusList.contains(Camera.Parameters.FOCUS_MODE_FIXED)) {
+//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_FIXED);
+//        } else if (focusList.contains(Camera.Parameters.FOCUS_MODE_INFINITY)) {
+//            parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_INFINITY);
+//        } else {
+//            parameters.setFocusMode(focusList.get(0));
+//        }
 
         camera.setParameters(parameters);
     }
