@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/jieduan_button"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="诵习练形成性评价"
+        android:textColor="@color/blue_1"/>
+    <Button
+        android:id="@+id/final_button"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="诵习练终结性评价"
+        android:textColor="@color/blue_1"/>
+    <Button
+        android:id="@+id/query_button"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="质量监测查询"
+        android:textColor="@color/blue_1"/>
+    <Button
+        android:id="@+id/action_button"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="行为习惯分析"
+        android:textColor="@color/blue_1"/>
+    <Button
+        android:id="@+id/setting_button"
+        android:paddingTop="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="个人设置"
+        android:textColor="@color/blue_1"/>
+
+</LinearLayout>

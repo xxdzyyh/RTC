@@ -11,4 +11,5 @@
     <string name="previous_question">上一题</string>
     <string name="next_question">下一题</string>
     <string name="homework_time_has_expired">作业时间已过</string>
+    <string name="title_activity_web_view">WebViewActivity</string>
 </resources>

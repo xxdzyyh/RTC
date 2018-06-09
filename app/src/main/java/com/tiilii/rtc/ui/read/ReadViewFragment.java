@@ -10,11 +10,13 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,6 +94,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     @BindView(R.id.fl_view)
     FrameLayout viewFrameLayout;
 
+    String resultString;
     /**
      * 需要申请的权限
      */
@@ -106,6 +110,9 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     @BindView(R.id.tv_temporary)
     TextView temporaryTextView;
 
+    @BindView(R.id.tv_history)
+    TextView historyTextView;
+
     @Inject
     ReadContract.Presenter mPresenter;
 
@@ -120,7 +127,6 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         View root = inflater.inflate(R.layout.fragment_read_view, container, false);
         ButterKnife.bind(this, root);
 
-
         requestPermission(0);
         setDefaultSavePath();
         setListeners();
@@ -131,6 +137,21 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mPresenter.bindView(this);
+
+        ViewTreeObserver vto = historyTextView.getViewTreeObserver();
+
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int maxLines = historyTextView.getHeight() / historyTextView.getLineHeight();
+                historyTextView.setMaxLines(maxLines);
+                historyTextView.setMovementMethod(new ScrollingMovementMethod());
+
+                historyTextView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+
+
     }
 
     @Override
@@ -202,6 +223,8 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         // 结束语音识别
         cancel();
 
+        historyTextView.setText(null);
+        temporaryTextView.setText(null);
     }
 
     @Override
@@ -350,13 +373,28 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
         public void onAsrPartialResult(String[] results, RecogResult recogResult) {
 
             Log.e(TAG, "持续识别中");
+
+
             temporaryTextView.setText(results[0]);
         }
 
         @Override
         public void onAsrFinalResult(String[] results, RecogResult recogResult) {
 
-            temporaryTextView.setText(results[0]);
+            if (results.length > 0) {
+                String result = results[0];
+
+                temporaryTextView.setText(result);
+
+                historyTextView.append("\n"+result);
+
+                int height = historyTextView.getMaxLines() * historyTextView.getLineHeight();
+                int offset = historyTextView.getLineCount()*historyTextView.getLineHeight();
+                if(offset> height){
+                    historyTextView.scrollTo(0,offset-height);
+                }
+            }
+
         }
 
         @Override
@@ -485,7 +523,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
                 height = size.height;
             }
         }
-        parameters.setPreviewSize(640, 640);
+        parameters.setPreviewSize(width, height);
         System.out.println("width = " + width);
         System.out.println("height = " + height);
 
@@ -525,7 +563,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
     private void startRecord() {
         recorder = new MediaRecorder();
 
-        camera.unlock();
+        camera.lock();
         recorder.setCamera(camera);
 //        recorder.setAudioSource(MediaRecorder.AudioSource.DEFAULT);
         recorder.setVideoSource(MediaRecorder.VideoSource.DEFAULT);
@@ -573,7 +611,7 @@ public class ReadViewFragment extends BaseFragment implements ReadContract.View 
             recorder.release();
             recorder = null;
             if (camera != null) {
-                camera.lock();
+                camera.unlock();
             }
         }
     }

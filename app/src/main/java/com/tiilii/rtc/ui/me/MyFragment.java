@@ -1,20 +1,16 @@
-package com.tiilii.rtc.ui.learn.mainpage;
+package com.tiilii.rtc.ui.me;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
-import com.tiilii.rtc.ui.home.HomePresenter;
 
 import javax.inject.Inject;
 
@@ -23,13 +19,10 @@ import butterknife.ButterKnife;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
- * 习汉字
- *
- * @author fox
- * @since 2018/03/05
+ * Created by wangxuefeng on 2018/6/8.
  */
 
-public class LearnFragment extends BaseFragment {
+public class MyFragment extends BaseFragment {
 
     /**
      * 标题
@@ -42,32 +35,30 @@ public class LearnFragment extends BaseFragment {
     @BindView(R.id.iv_back)
     ImageView backImageView;
 
-    @Inject
-    LearnViewFragment learnViewFragment;
 
-    @Inject
-    LearnPresenter learnPresenter;
+    MyViewFragment myViewFragment;
+    MyPresenter myPreseter;
 
-    public static LearnFragment newInstance() {
-        return new LearnFragment();
+    public static MyFragment newInstance() {
+        return new MyFragment();
     }
 
-    @Inject
-    public LearnFragment() {
-        learnPresenter = new LearnPresenter();
+    public MyFragment() {
+        myPreseter = new MyPresenter();
+        myViewFragment = new MyViewFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_learn, container, false);
+        View root = inflater.inflate(R.layout.fragment_my, container, false);
         ButterKnife.bind(this, root);
 
         getChildFragmentManager().beginTransaction()
-                .replace(R.id.fl_learn_content, learnViewFragment)
+                .replace(R.id.fl_my_content, myViewFragment)
                 .commit();
 
-        titleTextView.setText("习汉字");
+        titleTextView.setText("个人中心");
         backImageView.setVisibility(View.GONE);
 
         return root;
@@ -75,8 +66,6 @@ public class LearnFragment extends BaseFragment {
 
     @Override
     public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
-
 }

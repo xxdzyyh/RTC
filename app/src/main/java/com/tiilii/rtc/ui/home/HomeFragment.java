@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
 import com.tiilii.rtc.ui.learn.mainpage.LearnFragment;
+import com.tiilii.rtc.ui.me.MyFragment;
+import com.tiilii.rtc.ui.me.MyPresenter;
 import com.tiilii.rtc.ui.practise.mainpage.PractiseFragment;
 import com.tiilii.rtc.ui.read.ReadFragment;
 
@@ -30,6 +32,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
     ReadFragment readFragment;
     LearnFragment learnFragment;
     PractiseFragment practiseFragment;
+    MyFragment myFragment;
 
     @Inject
     HomeContract.Presenter mPresenter;
@@ -67,6 +70,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
         hideFragment(learnFragment, "learn");
         hideFragment(practiseFragment, "practise");
+        hideFragment(myFragment,"my");
         showFragment(readFragment, "read");
     }
 
@@ -85,6 +89,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
         hideFragment(readFragment, "read");
         hideFragment(practiseFragment, "practise");
+        hideFragment(myFragment,"my");
         showFragment(learnFragment, "learn");
     }
 
@@ -99,9 +104,24 @@ public class HomeFragment extends BaseFragment implements HomeContract.View {
 
         hideFragment(readFragment, "read");
         hideFragment(learnFragment, "learn");
+        hideFragment(myFragment,"my");
         showFragment(practiseFragment, "practise");
     }
 
+
+    @OnClick(R.id.tv_my)
+    void clickMy() {
+         if (myFragment == null) {
+             myFragment = MyFragment.newInstance();
+
+             addFragment(myFragment, "my");
+         }
+
+         hideFragment(readFragment,"read");
+         hideFragment(learnFragment, "learn");
+         hideFragment(practiseFragment, "practise");
+         showFragment(myFragment,"my");
+    }
     /**
      * 隐藏Fragment
      */

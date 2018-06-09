@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.baidu.speech.APP_ID"
             android:value="7622541" />
@@ -44,26 +43,25 @@
         <activity
             android:name=".ui.practise.teacher.list.HomeworkListActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.practise.teacher.statistic.HomeworkStatisticActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.practise.teacher.detail.HomeworkDetailActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.learn.content.write.WriteActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.learn.content.shot.ShotActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.practise.student.StudentActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".base.mvp.WebViewActivity"
+            android:label="@string/title_activity_web_view"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

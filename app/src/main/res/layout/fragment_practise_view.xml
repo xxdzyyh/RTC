@@ -6,34 +6,27 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.bovink.gradient.GradientTextView
-        android:id="@+id/tv_teacher"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="老师布置的作业"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:corners_radius="5dp"
-        app:solid_color="@color/red_1" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <Button
+            android:id="@+id/pre_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="上一题"/>
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="下一题"/>
+    </LinearLayout>
 
-    <com.bovink.gradient.GradientTextView
-        android:id="@+id/tv_student"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="自主练习"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:corners_radius="5dp"
-        app:solid_color="@color/red_1" />
 </LinearLayout>

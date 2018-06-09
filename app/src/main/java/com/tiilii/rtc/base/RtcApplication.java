@@ -6,7 +6,9 @@ import android.view.Gravity;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
+import com.tiilii.rtc.di.component.ApplicationComponent;
 import com.tiilii.rtc.di.component.DaggerApplicationComponent;
+
 
 import javax.inject.Inject;
 
