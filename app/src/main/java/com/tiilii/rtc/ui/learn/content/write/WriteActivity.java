@@ -2,6 +2,7 @@ package com.tiilii.rtc.ui.learn.content.write;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.baidu.ocr.sdk.OCR;
@@ -23,7 +24,11 @@ import dagger.android.AndroidInjection;
  * @since 2017/11/20
  */
 
+
+
 public class WriteActivity extends BaseActivity {
+
+    static int count = 0;
 
     /**
      * 标题
@@ -51,22 +56,28 @@ public class WriteActivity extends BaseActivity {
 
         titleTextView.setText("写字");
 
-
-        initAccessTokenWithAkSk();
+        if (count == 0) {
+            count = 1;
+            initAccessTokenWithAkSk();
+        }
     }
 
     private void initAccessTokenWithAkSk() {
-        OCR.getInstance().initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+        OCR.getInstance(mContext).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
             @Override
             public void onResult(AccessToken result) {
                 String token = result.getAccessToken();
+
+                Log.e("Ocr Token",token);
             }
 
             @Override
             public void onError(OCRError error) {
                 error.printStackTrace();
             }
-        }, getApplicationContext(), "NGo827dVORO7D7y3rQY1XO4G", "OAiAafDFNVmllYYsDCzWgOCe7ICdlMYp");
+        }, getApplicationContext(),
+                "NGo827dVORO7D7y3rQY1XO4G",
+                "OAiAafDFNVmllYYsDCzWgOCe7ICdlMYp");
     }
 
     @OnClick(R.id.iv_back)

@@ -122,6 +122,43 @@ public class PractiseViewFragment extends BaseFragment implements PractiseContra
         }
 
         viewPager.setAdapter(pagerAdapter);
+
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if (position == views.size()-1) {
+                    nextButton.setEnabled(false);
+                } else {
+                    nextButton.setEnabled(true);
+                }
+
+                if(position == 0) {
+                    preButton.setEnabled(false);
+                } else {
+                    preButton.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == views.size()-1) {
+                    nextButton.setEnabled(false);
+                } else {
+                    nextButton.setEnabled(true);
+                }
+
+                if(position == 0) {
+                    preButton.setEnabled(false);
+                } else {
+                    preButton.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -129,8 +166,6 @@ public class PractiseViewFragment extends BaseFragment implements PractiseContra
         super.onResume();
 
     }
-
-
 
     void setupWebView(WebView webView) {
 

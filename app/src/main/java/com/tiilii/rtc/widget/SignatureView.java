@@ -78,7 +78,6 @@ public class SignatureView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
         mHeight = getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec);
-
     }
 
     private void initBrush(float pressure) {
@@ -86,9 +85,14 @@ public class SignatureView extends View {
         DecimalFormat df = new DecimalFormat("0.0");
         pressure = Float.valueOf(df.format(pressure));
 
+        Log.e("pressure",pressure+"");
+
         if (!brushes.containsKey(pressure)) {
 
             float brushWidth = MAX_STROKE_WIDTH * pressure;
+
+            Log.e("brushWidth",brushWidth+"");
+
             mCurrentBrush = new Brush(brushWidth);
             brushes.put(pressure, mCurrentBrush);
         } else {

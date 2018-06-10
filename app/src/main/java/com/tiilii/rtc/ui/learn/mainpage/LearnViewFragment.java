@@ -59,7 +59,7 @@ public class LearnViewFragment extends BaseFragment implements LearnContract.Vie
 
     @Inject
     public LearnViewFragment() {
-
+        mPresenter = new LearnPresenter();
     }
 
     @Nullable
@@ -92,8 +92,6 @@ public class LearnViewFragment extends BaseFragment implements LearnContract.Vie
                     Log.e("Glide",url);
                     Log.e("Thread",Thread.currentThread().toString());
 
-                    imageView.setBackgroundColor(getResources().getColor(R.color.blue_1));
-
                     Glide.with(imageView.getContext())
                             .load(url)
                             .asGif()
@@ -116,6 +114,12 @@ public class LearnViewFragment extends BaseFragment implements LearnContract.Vie
 
             @Override
             public boolean onQueryTextChange(String s) {
+
+                if (s.length() == 0) {
+                    Log.e("Glide","Clear");
+                    imageView.setImageBitmap(null);
+                }
+
                 return false;
             }
         });

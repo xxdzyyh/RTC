@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tiilii.rtc.R;
 import com.tiilii.rtc.base.BaseFragment;
@@ -16,6 +17,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
@@ -32,6 +34,12 @@ public class PractiseFragment extends BaseFragment {
      */
     @BindView(R.id.tv_title)
     TextView titleTextView;
+
+    // 右item
+
+    @BindView(R.id.tv_side_text)
+    TextView rightTextView;
+
     /**
      * 返回键。在这个页面隐藏掉。
      */
@@ -65,6 +73,8 @@ public class PractiseFragment extends BaseFragment {
         titleTextView.setText("练运算");
         backImageView.setVisibility(View.GONE);
 
+        rightTextView.setText("提交");
+
         return root;
     }
 
@@ -74,4 +84,8 @@ public class PractiseFragment extends BaseFragment {
         super.onAttach(context);
     }
 
+    @OnClick(R.id.tv_side_text)
+    void commit() {
+        Toast.makeText(mContext,"作业已完成",Toast.LENGTH_SHORT).show();
+    }
 }
