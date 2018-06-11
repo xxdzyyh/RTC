@@ -56,12 +56,13 @@ public class SignatureView extends View {
     /**
      * Erases the signature.
      */
-//    public void clear() {
-//        path.reset();
-//
-//        // Repaints the entire view.
-//        invalidate();
-//    }
+    public void clear() {
+        brushes.clear();
+
+        // Repaints the entire view.
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         Set<Float> keys = brushes.keySet();

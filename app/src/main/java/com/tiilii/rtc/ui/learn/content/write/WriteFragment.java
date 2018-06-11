@@ -78,10 +78,13 @@ public class WriteFragment extends BaseFragment implements WriteContract.View, S
     }
 
     @OnClick(R.id.btn_finish)
+    void clear() {
+        writeSignatureView.setTouchable(true);
+        writeSignatureView.clear();
+    }
+
     void finishWrite() {
 
-        mKProgressHUD.setLabel("保存中...")
-                .show();
         writeSignatureView.setTouchable(false);
         writeSignatureView.saveBitmap();
     }
@@ -99,10 +102,11 @@ public class WriteFragment extends BaseFragment implements WriteContract.View, S
 
         File file = new File(filePath + fileName);
 
-        if (file.exists() == false) {
-            finishWrite();
+        if (file.exists()) {
+           file.delete();
         }
 
+        finishWrite();
         rec();
 
 //        RecognizeService.recGeneral(mContext,filePath + fileName,
@@ -156,8 +160,6 @@ public class WriteFragment extends BaseFragment implements WriteContract.View, S
     @Override
     public void onSuccess() {
 
-        ToastUtils.showShort("保存成功");
-        mKProgressHUD.dismiss();
     }
 
     @Override
